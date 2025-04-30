@@ -24,12 +24,9 @@ function TrialRegistrationPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/trial",
-        formData
-      );
+      const response = await axios.post("/api/trial", formData);
 
-      setMessage("Danke für Registrierung! 🥊");
+      setMessage(response.data.message || "Danke für Registrierung!");
       setFormData({ firstName: "", lastName: "", email: "", startDate: "" });
     } catch (error) {
       if (error.response && error.response.data) {
